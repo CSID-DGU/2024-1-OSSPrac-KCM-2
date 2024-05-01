@@ -1,8 +1,7 @@
-from urllib import request
-
-from flask import Flask, render_template, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'  
 
 @app.route('/')
 def form():
@@ -18,6 +17,15 @@ def submit_form():
 
     return redirect(url_for('result'))
 
+@app.route('/result', methods=['GET'])
+def result():
+    name = session.get('name')
+    student_number = session.get('student_number')
+    gender = session.get('gender')
+    major = session.get('major')
+    languages = session.get('programming_languages')
+
+    return render_template('result.html', name=name, student_number=student_number, gender=gender, major=major, languages=languages)
 
 if __name__ == '__main__':
     app.run(debug=True)
