@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <h1><b> Team05 : Open The Window </b></h1>
+    <form action="/result" method="POST">
+        <p><b>* Name </b><input type='text' name='name'></b></p>
+        <p><b>* Student Number </b> <input type='text' id='StudentNumber'name='StudentNumber' /></b></p>
+        <p><b>* University </b><input type='text' id='University' name='University'/></b></p>
+        <p><b>* Major </b><input type='text' name='major'></b></p>
+        <p><b>* Gender </b></p>
+        <p><input type='radio' id ='male' name="gender" value="male"> Male <input type='radio' id ='gender' name="gender" value="female">Female</p>
+        <p><b>* Email </b>
+            <input type='text' id='email' name="email"> @
+            <select name="email">
+            <option value="선택" selected>선택</option>
+            <option value="naver.com">naver.com</option>
+            <option value="daum.net">daum.net</option>
+            <option value="gmail.com">gmail.com</option>
+            <option value="hanmail.net">hanmail.net</option>
+            <option value="yahoo.com">yahoo.com</option>
+            </select>
+        </p>
+
+        <p><b>* Programming Languages</b></p>
+        <p> <input type="checkbox" name="languages" value="Python"> Python
+            <input type="checkbox" name="languages" value="Java">Java
+            <input type="checkbox" name="languages" value="HTML">HTML
+            <input type="checkbox" name="languages" value="C++">C++
+        </p>
+        <button type='submit' name='submit' value='submit'>submit</button>
+    </form>
+</body>
+</html>
