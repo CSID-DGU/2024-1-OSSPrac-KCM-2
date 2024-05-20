@@ -1,31 +1,25 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request
 
-app = Flask(__name__)
-app.secret_key = 'your_secret_key'  
+app=Flask(__name__)
 
 @app.route('/')
-def form():
-    return render_template('form.html')
 
-@app.route('/submit', methods=['POST'])
-def submit_form():
-    session['name'] = request.form.get('name')
-    session['student_number'] = request.form.get('student_number')
-    session['gender'] = request.form.get('gender')
-    session['major'] = request.form.get('major')
-    session['programming_languages'] = request.form.getlist('programming_language')
+def input():
+    return render_template('input_info.html')
 
-    return redirect(url_for('result'))
-
-@app.route('/result', methods=['GET'])
+@app.route('/result',methods=['POST','GET'])
 def result():
-    name = session.get('name')
-    student_number = session.get('student_number')
-    gender = session.get('gender')
-    major = session.get('major')
-    languages = session.get('programming_languages')
+    if request.method =='POST':
+        result=dict()
+        result['Name']=request.form.get('name')
+        result['Student Number']=request.form.get('StudentNumber')
+        result['University'] = request.form.get('University')
+        result['Gender'] = request.form.get('gender')
+        result['Major'] = request.form.get('major')
+        result['Email']='@'.join(request.form.getlist('email'))
+        result['Languages'] = ', '.join(request.form.getlist('languages'))
+        
+        return render_template('result.html',result=result)
 
-    return render_template('result.html', name=name, student_number=student_number, gender=gender, major=major, languages=languages)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ =='__main__':
+    app.run(debug=True) 
